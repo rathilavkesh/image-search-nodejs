@@ -3,7 +3,7 @@
 const appRoot = require('app-root-path');
 const winston = require('winston');
 const { createLogger, transports, format } = winston;
-const { combine, timestamp, label } = format;
+const { combine, timestamp } = format;
 
 const options = {
   file: {
