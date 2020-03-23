@@ -5,11 +5,12 @@ module.exports = {
     {
       name: 'MY-SERVICE-API',
       script: './bin/www',
-      instances: 'max',
+      instances: 0,
       autorestart: true,
       exec_mode: 'cluster',
       watch: false,
       max_memory_restart: '1G',
+      exp_backoff_restart_delay: 100,
     },
   ],
 };

@@ -25,7 +25,6 @@ const options = {
 
 const logger = createLogger({
   format: combine(timestamp(), format.json()),
-  defaultMeta: { app: 'myapp-service' },
   transports: [new transports.File(options.file), new transports.Console(options.console)],
   exitOnError: false, // do not exit on handled exceptions
 });

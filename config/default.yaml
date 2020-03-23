@@ -1,3 +1,0 @@
-app:
-  env: local
-  port: 4000

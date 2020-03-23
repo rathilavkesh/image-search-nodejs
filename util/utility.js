@@ -1,10 +1,9 @@
 'use strict';
 
-const config = require('config');
 const Cryptr = require('cryptr');
 
 class Utility {
-  #secretKey = process.env.SECRET_KEY || config.get('app.secretKey');
+  #secretKey = process.env.SECRET_KEY;
   #cryptr = new Cryptr(this.#secretKey);
 
   constructor() {
@@ -15,8 +14,12 @@ class Utility {
   }
 
   decrypt(value) {
-    if (value !== null) {
-      return this.#cryptr.decrypt(value);
+    try {
+      if (value !== null) {
+        return this.#cryptr.decrypt(value);
+      }
+    } catch (error) {
+      return value;
     }
     return null;
   }
