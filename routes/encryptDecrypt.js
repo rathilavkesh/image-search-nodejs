@@ -1,7 +1,7 @@
 'use strict';
-
 const express = require('express');
 const utility = require('../util/utility');
+
 const router = express.Router();
 
 /* GET users listing. */

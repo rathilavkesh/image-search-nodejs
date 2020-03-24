@@ -1,9 +1,9 @@
 'use strict';
-
 const Cryptr = require('cryptr');
 
 class Utility {
   #secretKey = process.env.SECRET_KEY;
+
   #cryptr = new Cryptr(this.#secretKey);
 
   constructor() {

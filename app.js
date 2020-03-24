@@ -1,5 +1,4 @@
 'use strict';
-
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -40,7 +39,7 @@ app.use((err, req, res) => {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
-    error: isDevelopment ? err : {},
+    error: isDevelopment ? err : {}
   });
 });
 
