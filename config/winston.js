@@ -1,22 +1,14 @@
 'use strict';
-const appRoot = require('app-root-path');
 const winston = require('winston');
 
 const { createLogger, transports, format } = winston;
 const { combine, timestamp } = format;
 
+const isProd = process.env.NODE_ENV === 'production';
+
 const options = {
-  file: {
-    level: 'info',
-    filename: `${appRoot}/logs/app.log`,
-    handleExceptions: true,
-    json: true,
-    maxsize: 5242880, // 5MB
-    maxFiles: 5,
-    colorize: true
-  },
   console: {
-    level: 'debug',
+    level: isProd ? 'info' : 'debug',
     handleExceptions: true,
     json: false,
     colorize: true
@@ -25,7 +17,7 @@ const options = {
 
 const logger = createLogger({
   format: combine(timestamp(), format.json()),
-  transports: [new transports.File(options.file), new transports.Console(options.console)],
+  transports: [new transports.Console(options.console)],
   exitOnError: false // do not exit on handled exceptions
 });
 
