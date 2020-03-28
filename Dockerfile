@@ -12,7 +12,9 @@ RUN mkdir -p logs &&\
     npm ci --only=production && \
     npm install -g pm2
 
-COPY ./src .
+COPY ./src/ .
+
+COPY ./ecosystem.config.js .
 
 ENV NODE_CONFIG_DIR=./config/app
 

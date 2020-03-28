@@ -3,7 +3,7 @@ module.exports = {
   apps: [
     {
       name: 'MY-SERVICE-API',
-      script: './bin/www',
+      script: './index.js',
       instances: 0,
       autorestart: true,
       exec_mode: 'cluster',
