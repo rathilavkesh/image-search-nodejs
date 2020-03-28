@@ -4,7 +4,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
-const winston = require('./config/winston');
+const winston = require('./config/logger/winston');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -39,7 +39,7 @@ app.use((err, req, res) => {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
-    error: isDevelopment ? err : {}
+    error: isDevelopment ? err : {},
   });
 });
 

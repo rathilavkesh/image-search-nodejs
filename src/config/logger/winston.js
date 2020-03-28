@@ -11,20 +11,20 @@ const options = {
     level: isProd ? 'info' : 'debug',
     handleExceptions: true,
     json: false,
-    colorize: true
-  }
+    colorize: true,
+  },
 };
 
 const logger = createLogger({
   format: combine(timestamp(), format.json()),
   transports: [new transports.Console(options.console)],
-  exitOnError: false // do not exit on handled exceptions
+  exitOnError: false, // do not exit on handled exceptions
 });
 
 logger.stream = {
   write: (message) => {
     logger.info(message);
-  }
+  },
 };
 
 module.exports = logger;

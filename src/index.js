@@ -1,22 +1,17 @@
-#!/usr/bin/env node
-/* eslint-disable node/shebang */
-/* eslint-disable strict */
 /* eslint-disable no-unreachable */
 /* eslint-disable no-process-exit */
 /* eslint-disable no-use-before-define */
-/* eslint-disable import/order */
-/* eslint-disable no-restricted-globals */
-
+'use strict';
 /**
  * Module dependencies.
  */
 require('dotenv').config();
+const http = require('http');
 
 const config = require('config');
-const app = require('../app');
-const logger = require('../config/winston');
-const http = require('http');
-const models = require('../models');
+const app = require('./app');
+const logger = require('./config/logger/winston');
+const models = require('./models');
 
 /**
  * Create HTTP server.
@@ -30,13 +25,11 @@ const appPort = normalizePort(process.env.PORT || config.get('app.port') || '300
 function normalizePort(val) {
   const value = parseInt(val, 10);
 
-  if (isNaN(value)) {
-    // named pipe
+  if (Number.isNaN(value)) {
     return val;
   }
 
   if (value >= 0) {
-    // port number
     return value;
   }
 
@@ -56,11 +49,11 @@ function onError(error) {
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(`${bind} requires elevated privileges`);
+      logger.error(`${bind} requires elevated privileges`);
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error(`${bind} is already in use`);
+      logger.error(`${bind} is already in use`);
       process.exit(1);
       break;
     default:
@@ -78,7 +71,7 @@ function onListening() {
   logger.info(`Listening on ${bind} port.`);
 }
 
-models.sequelize.sync({force: true}).then(() => {
+models.sequelize.sync({ force: true }).then(() => {
   /**
    * Get port from environment and store in Express.
    */

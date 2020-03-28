@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "nodemon ./src/index.js",
     "test": "mocha",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
@@ -38,6 +38,7 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.0",
     "mocha": "^7.1.1",
+    "nodemon": "^2.0.2",
     "prettier": "^2.0.1",
     "request": "^2.88.2"
   },

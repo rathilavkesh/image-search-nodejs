@@ -10,24 +10,24 @@ module.exports = (sequelize, DataTypes) => {
         validate: { isEmail: true, notEmpty: true, notNull: true },
         set(val) {
           this.setDataValue('email', val.toLoweCase());
-        }
+        },
       },
       firstName: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: { is: /^[a-zA-Z0-9 ]+$/i, notEmpty: true, notNull: true }
+        validate: { is: /^[a-zA-Z0-9 ]+$/i, notEmpty: true, notNull: true },
       },
       lastName: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: { is: /^[a-zA-Z0-9 ]+$/i, notEmpty: true, notNull: true }
+        validate: { is: /^[a-zA-Z0-9 ]+$/i, notEmpty: true, notNull: true },
       },
       password: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: { notEmpty: true, notNull: true }
+        validate: { notEmpty: true, notNull: true },
       },
-      active: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true }
+      active: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true },
     },
     {
       underscored: true,
@@ -35,8 +35,8 @@ module.exports = (sequelize, DataTypes) => {
       getterMethods: {
         fullName() {
           return `${this.firstName} ${this.lastName}`;
-        }
-      }
+        },
+      },
     }
   );
 

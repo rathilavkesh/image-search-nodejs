@@ -1,6 +1,6 @@
 'use strict';
 module.exports = {
   app: {
-    env: 'qa'
-  }
+    env: 'prod',
+  },
 };

@@ -12,7 +12,9 @@ RUN mkdir -p logs &&\
     npm ci --only=production && \
     npm install -g pm2
 
-COPY . .
+COPY ./src .
+
+ENV NODE_CONFIG_DIR=./config/app
 
 EXPOSE 4000
 CMD [ "pm2-runtime", "start", "ecosystem.config.js"]
