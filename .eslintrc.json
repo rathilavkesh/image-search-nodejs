@@ -1,5 +1,5 @@
 {
-  "extends": ["airbnb-base", "prettier", "plugin:node/recommended"],
+  "extends": ["plugin:node/recommended", "prettier"],
   "plugins": ["prettier"],
   "parser": "babel-eslint",
   "parserOptions": {
