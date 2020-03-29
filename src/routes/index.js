@@ -1,11 +1,10 @@
 'use strict';
-const express = require('express');
+const home = require('./home');
+const encryptDecrypt = require('./encryptDecrypt');
+const users = require('./users');
 
-const router = express.Router();
-
-/* GET home page. */
-router.get('/', (req, res) => {
-  res.json({ title: 'My First NodeJS Express App!!!!' });
-});
-
-module.exports = router;
+module.exports = (app) => {
+  app.use('/', home);
+  app.use('/users', users);
+  app.use('/encryptDecrypt', encryptDecrypt);
+};

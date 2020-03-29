@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
         set(val) {
           const newVal = val || '';
           this.setDataValue('firstLine', newVal.trim());
-        },
+        }
       },
       secondLine: {
         type: DataTypes.STRING,
@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
           } else {
             this.setDataValue('secondLine', null);
           }
-        },
+        }
       },
       city: {
         type: DataTypes.STRING,
@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
         set(val) {
           const newVal = val || '';
           this.setDataValue('city', newVal.trim());
-        },
+        }
       },
       state: {
         type: DataTypes.STRING,
@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
         set(val) {
           const newVal = val || '';
           this.setDataValue('state', newVal.trim());
-        },
+        }
       },
       country: {
         type: DataTypes.STRING,
@@ -49,7 +49,7 @@ module.exports = (sequelize, DataTypes) => {
         set(val) {
           const newVal = val || '';
           this.setDataValue('country', newVal.trim());
-        },
+        }
       },
       postalCode: {
         type: DataTypes.STRING,
@@ -58,13 +58,13 @@ module.exports = (sequelize, DataTypes) => {
         set(val) {
           const newVal = val || '';
           this.setDataValue('postalCode', newVal.trim());
-        },
+        }
       },
-      active: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true },
+      active: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true }
     },
     {
       underscored: true,
-      tableName: 'address',
+      tableName: 'address'
     }
   );
 

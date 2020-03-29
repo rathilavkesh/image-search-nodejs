@@ -10,7 +10,7 @@ module.exports = {
   app: {
     env: 'local',
     port: env.PORT || 4000,
-    isProd: env.NODE_ENV === 'production',
+    isProd: env.NODE_ENV === 'production'
   },
   database: {
     host: env.DB_HOST || 'localhost',
@@ -25,7 +25,7 @@ module.exports = {
     pool: {
       maxConnections: 10,
       minConnections: 0,
-      maxIdleTime: 30000,
-    },
-  },
+      maxIdleTime: 30000
+    }
+  }
 };
