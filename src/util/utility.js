@@ -1,38 +1,69 @@
 'use strict';
 const Cryptr = require('cryptr');
+const { validationResult } = require('express-validator');
 
-class Utility {
-  #secretKey = process.env.SECRET_KEY;
+const utility = (() => {
+  const secretKey = process.env.SECRET_KEY;
+  const cryptr = new Cryptr(secretKey);
 
-  #cryptr = new Cryptr(this.#secretKey);
+  const success = (res, data) => {
+    res.status(200);
+    res.json({
+      status: 'SUCCESS',
+      status_code: 200,
+      data: data
+    });
+  };
 
-  constructor() {
-    if (!Utility.instance) {
-      Utility.instance = this;
+  const error = (res, code, data) => {
+    res.status(code);
+    res.json({
+      status: 'ERROR',
+      status_code: code,
+      data: data
+    });
+  };
+
+  const validate = (req, res, next) => {
+    const errors = validationResult(req);
+    if (errors.isEmpty()) {
+      return next();
     }
-    return Utility.instance;
-  }
+    const extractedErrors = [];
+    errors.array().map((err) => extractedErrors.push({ [err.param]: err.msg }));
 
-  decrypt(value) {
+    return res.status(422).json({
+      errors: extractedErrors
+    });
+  };
+
+  const encrypt = (value) => {
+    if (value !== null) {
+      return cryptr.encrypt(value);
+    }
+    return null;
+  };
+
+  const decrypt = (value) => {
     try {
       if (value !== null) {
-        return this.#cryptr.decrypt(value);
+        return cryptr.decrypt(value);
       }
     } catch (error) {
       return value;
     }
     return null;
-  }
+  };
 
-  encrypt(value) {
-    if (value !== null) {
-      return this.#cryptr.encrypt(value);
-    }
-    return null;
-  }
-}
+  return {
+    success,
+    error,
+    validate,
+    decrypt,
+    encrypt
+  };
+})();
 
-const instance = new Utility();
-Object.freeze(instance);
+Object.freeze(utility);
 
-module.exports = instance;
+module.exports = utility;

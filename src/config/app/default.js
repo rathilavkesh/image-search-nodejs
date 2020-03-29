@@ -1,10 +1,10 @@
 'use strict';
 const logger = require('../logger/winston');
-const utility = require('../../util/utility');
+const { decrypt } = require('../../util/utility');
 
 const { env } = process;
 const dbPassword = env.DB_PASSWORD || 'root';
-const decDBPassword = utility.decrypt(dbPassword);
+const decDBPassword = decrypt(dbPassword);
 
 module.exports = {
   app: {

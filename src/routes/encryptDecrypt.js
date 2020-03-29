@@ -1,6 +1,6 @@
 'use strict';
 const express = require('express');
-const utility = require('../util/utility');
+const { encrypt, decrypt, success } = require('../util/utility');
 
 const router = express.Router();
 
@@ -8,11 +8,13 @@ const router = express.Router();
 router.get('/', (req, res) => {
   const { key, type } = req.query;
   if (type === 'encrypt') {
-    const encryptedValue = utility.encrypt(key);
-    res.json({ key, encryptedValue });
+    const encryptedValue = encrypt(key);
+    const data = { key, encryptedValue };
+    success(res, data);
   } else {
-    const decryptedValue = utility.decrypt(key);
-    res.json({ key, decryptedValue });
+    const decryptedValue = decrypt(key);
+    const data = { key, decryptedValue };
+    success(res, data);
   }
 });
 
