@@ -14,8 +14,6 @@ RUN mkdir -p logs &&\
 
 COPY ./src/ .
 
-COPY ./ecosystem.config.js .
-
 ENV NODE_CONFIG_DIR=./config/app
 
 EXPOSE 4000
